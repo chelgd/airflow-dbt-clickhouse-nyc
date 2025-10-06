@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: fact_taxi_daily
+    description: Daily taxi KPIs aggregated by pickup date
+    columns:
+      - name: pickup_date
+        tests: [not_null, unique]
+
+  - name: fact_taxi_daily_weather
+    description: Daily taxi metrics enriched with weather
+    columns:
+      - name: pickup_date
+        tests:
+          - not_null
+          - relationships:
+              name: fk_fact_weather
+              arguments:
+                to: ref('stg_weather')
+                field: weather_date

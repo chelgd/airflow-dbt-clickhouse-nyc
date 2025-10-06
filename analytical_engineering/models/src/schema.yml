@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: raw
+    database: nyc
+    schema: nyc
+    tables:
+      - name: taxi_trips
+      - name: weather

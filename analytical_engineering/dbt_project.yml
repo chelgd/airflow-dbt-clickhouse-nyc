@@ -1,0 +1,23 @@
+name: 'analytical_engineering'
+version: '1.0.0'
+
+profile: 'nyc_dbt'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+models:
+  analytical_engineering:
+    +materialized: view          # default for everything
+    staging:
+      +materialized: view        # keep staging light
+    marts:
+      +materialized: table       # build marts as tables
